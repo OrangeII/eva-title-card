@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evangelion Title Card</title>
+    <!-- Google Fonts: Shippori Mincho B1 for Japanese -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #000;
+        color: #fff;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      body {
+        min-height: 100vh;
+        min-width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-family: "Times New Roman", serif;
+        overflow: hidden;
+      }
+
+      .card {
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+        width: 30vw;
+        gap: 6px;
+      }
+
+      .card div {
+        line-height: 0.75;
+        margin: 0;
+
+        transform-origin: left;
+      }
+
+      .title-big {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 6rem;
+        transform: scaleX(0.6);
+      }
+
+      .title-medium {
+        text-transform: uppercase;
+        font-weight: 800;
+        font-size: 3rem;
+        transform: scaleX(0.7);
+      }
+
+      .episode {
+        text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        transform: scaleX(0.8);
+      }
+
+      .subtitle {
+        font-family: "Shippori Mincho B1", serif;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1 !important;
+        transform-origin: right !important;
+        transform: scaleX(0.8);
+        text-align: right;
+        padding-top: 1rem;
+      }
+
+      .light-bleed {
+        text-shadow:
+          0 0 2px #fff,
+          0 0 3px #fff,
+          0 0 5px orange;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card light-bleed" id="card">
+      <div class="title-medium" id="med1"></div>
+      <div class="title-medium" id="med2"></div>
+      <div class="title-big" id="big"></div>
+      <div class="episode" id="ep"></div>
+      <div class="subtitle" id="sub"></div>
+    </div>
+  </body>
+
+  <script>
+    const ID_MED1 = "med1";
+    const ID_MED2 = "med2";
+    const ID_BIG = "big";
+    const ID_EPISODE = "ep";
+    const ID_SUBTITLE = "sub";
+
+    let mediumTitle1 = "NEON";
+    let mediumTitle2 = "GENESIS";
+    let bigTitle = "EVANGELION";
+    let episode = "EPISODE:26";
+    let subtitle = "世界の中心でアイを叫んだけもの";
+
+    // parse route query parameters to extract title card content
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has(ID_MED1)) {
+      mediumTitle1 = urlParams.get(ID_MED1);
+    }
+    if (urlParams.has(ID_MED2)) {
+      mediumTitle2 = urlParams.get(ID_MED2);
+    }
+    if (urlParams.has(ID_BIG)) {
+      bigTitle = urlParams.get(ID_BIG);
+    }
+    if (urlParams.has(ID_EPISODE)) {
+      episode = urlParams.get(ID_EPISODE);
+    }
+    if (urlParams.has(ID_SUBTITLE)) {
+      subtitle = urlParams.get(ID_SUBTITLE);
+    }
+
+    // Function to update the title card content
+    function updateTitleCard() {
+      document.getElementById(ID_MED1).textContent = mediumTitle1;
+      document.getElementById(ID_MED2).textContent = mediumTitle2;
+      document.getElementById(ID_BIG).textContent = bigTitle;
+      document.getElementById(ID_EPISODE).textContent = episode;
+      document.getElementById(ID_SUBTITLE).textContent = subtitle;
+    }
+
+    // Call the function to set the initial content
+    updateTitleCard();
+  </script>
+</html>
